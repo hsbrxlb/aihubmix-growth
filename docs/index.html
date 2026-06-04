@@ -1,266 +1,821 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AIHubMix 欧美开发者增长与 Model-Mix 方案</title>
-    <meta
-      name="description"
-      content="AIHubMix 欧美开发者流量增长与非 Claude / 开源模型消耗占比提升方案"
-    />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23eef8f5'/%3E%3Cpath d='M16 38C24 18 40 18 48 38' fill='none' stroke='%2370d7dd' stroke-width='8' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='38' r='8' fill='%238be1be'/%3E%3C/svg%3E"
-    />
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <header class="topbar">
-      <a class="brand" href="#top" aria-label="AIHubMix 增长作业">
-        <span class="brand-mark"></span>
-        <span>AIHubMix 增长作业</span>
-      </a>
-      <nav aria-label="主要章节">
-        <a href="#loop">增长链路</a>
-        <a href="#playbook">模型选择</a>
-        <a href="#presets">一键配置</a>
-        <a href="#dashboard">成本看板</a>
-        <a href="#plan">推进节奏</a>
-      </nav>
-    </header>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AIHubMix 海外开发者增长方案 - BlockFrame</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap");
 
-    <main id="top">
-      <section id="loop" class="section-band loop-band">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Growth loop</p>
-          <h2>从“知道产品”到“真正用起来”的完整过程</h2>
-          <p>
-            重点不是多发几篇文章，而是让开发者最快完成第一次 API 调用，并在他们常用的工具里，自然用上合适的模型组合。
-          </p>
+    :root {
+      --pink: #fe90e8;
+      --blue: #c0f7fe;
+      --green: #99e885;
+      --yellow: #f7cb46;
+      --cream: #ffdc8b;
+      --black: #000;
+      --white: #fff;
+      --offwhite: #fffdf5;
+      --border: 4px solid var(--black);
+      --shadow: 8px 8px 0 var(--black);
+      --shadow-sm: 4px 4px 0 var(--black);
+      --anchor-offset: 112px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--cream);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--black);
+      background:
+        radial-gradient(circle, rgba(0, 0, 0, 0.18) 1.2px, transparent 1.2px) 38px 36px / 24px 24px,
+        linear-gradient(180deg, var(--cream), var(--offwhite) 46%, var(--blue));
+    }
+
+    a { color: inherit; }
+
+    [id] { scroll-margin-top: var(--anchor-offset); }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 18px clamp(18px, 4vw, 52px);
+      border-bottom: var(--border);
+      background: var(--offwhite);
+      box-shadow: 0 4px 0 var(--black);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Space Grotesk", monospace;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border: 3px solid var(--black);
+      background: var(--pink);
+      box-shadow: var(--shadow-sm);
+      transform: rotate(8deg);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      font-family: "Space Grotesk", monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      padding: 8px 12px;
+      border: 3px solid var(--black);
+      background: var(--white);
+      text-decoration: none;
+      box-shadow: var(--shadow-sm);
+      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+    }
+
+    nav a:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--black);
+      background: var(--green);
+    }
+
+    main {
+      width: min(100%, 1240px);
+      margin: 0 auto;
+      padding: clamp(28px, 5vw, 72px) clamp(16px, 4vw, 40px) 90px;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: stretch;
+      margin-bottom: clamp(28px, 5vw, 64px);
+    }
+
+    .hero-card {
+      position: relative;
+      padding: clamp(28px, 5vw, 58px);
+      border: var(--border);
+      background: var(--offwhite);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card::before,
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      border: var(--border);
+      background: var(--pink);
+    }
+
+    .hero-card::before {
+      width: 88px;
+      height: 56px;
+      right: 34px;
+      top: -28px;
+      transform: rotate(9deg);
+    }
+
+    .hero-card::after {
+      width: 38px;
+      height: 38px;
+      right: 70px;
+      bottom: 46px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .label {
+      display: inline-block;
+      margin-bottom: 22px;
+      padding: 8px 16px;
+      border: 3px solid var(--black);
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      font-family: "Space Grotesk", monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nb-label-yellow { background: var(--yellow); }
+    .nb-label-pink { background: var(--pink); }
+    .nb-label-green { background: var(--green); }
+    .nb-label-blue { background: var(--blue); }
+
+    h1,
+    h2,
+    h3,
+    p { margin-top: 0; }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 24px;
+      font-size: clamp(44px, 7vw, 92px);
+      line-height: 0.98;
+      letter-spacing: 0;
+      font-weight: 900;
+    }
+
+    h1 span { display: block; }
+
+    .lead {
+      max-width: 760px;
+      margin-bottom: 0;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.6;
+      font-weight: 700;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .quick-card {
+      min-height: 132px;
+      padding: 18px;
+      border: var(--border);
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: rotate(-1deg);
+    }
+
+    .quick-card:nth-child(2) { background: var(--green); transform: rotate(1deg); }
+    .quick-card:nth-child(3) { background: var(--blue); transform: rotate(1deg); }
+    .quick-card:nth-child(4) { background: var(--pink); transform: rotate(-1deg); }
+
+    .quick-card strong {
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .quick-card span {
+      font-family: "Space Grotesk", monospace;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    section {
+      position: relative;
+      margin: 0 0 clamp(28px, 5vw, 56px);
+      padding: clamp(24px, 4vw, 42px);
+      border: var(--border);
+      background: var(--offwhite);
+      box-shadow: var(--shadow);
+    }
+
+    section:nth-of-type(2n) { background: var(--blue); }
+    section:nth-of-type(3n) { background: var(--green); }
+    section:nth-of-type(4n) { background: var(--cream); }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 22px;
+    }
+
+    .section-num {
+      min-width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      border: 3px solid var(--black);
+      background: var(--yellow);
+      box-shadow: var(--shadow-sm);
+      font-family: "Space Grotesk", monospace;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .content {
+      display: grid;
+      gap: 18px;
+      font-size: clamp(16px, 1.35vw, 20px);
+      line-height: 1.75;
+      font-weight: 560;
+    }
+
+    .content p { margin-bottom: 0; }
+
+    .callout,
+    .list-box,
+    .example-box,
+    .steps,
+    .choice-grid,
+    .artifact-grid {
+      border: 3px solid var(--black);
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(18px, 3vw, 28px);
+    }
+
+    .callout strong,
+    .list-title,
+    .example-box strong {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-family: "Space Grotesk", monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    ul,
+    ol {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    li {
+      position: relative;
+      padding-left: 34px;
+    }
+
+    li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 16px;
+      height: 16px;
+      border: 3px solid var(--black);
+      background: var(--yellow);
+      box-shadow: 2px 2px 0 var(--black);
+    }
+
+    .steps {
+      counter-reset: step;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .steps li {
+      min-height: 108px;
+      padding: 18px;
+      border: 3px solid var(--black);
+      background: var(--offwhite);
+      box-shadow: var(--shadow-sm);
+      font-weight: 800;
+    }
+
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step, decimal-leading-zero);
+      position: static;
+      display: block;
+      width: auto;
+      height: auto;
+      margin-bottom: 14px;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      font-family: "Space Grotesk", monospace;
+      font-size: 26px;
+      line-height: 1;
+      color: var(--black);
+    }
+
+    .choice-grid,
+    .artifact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .choice-grid li,
+    .artifact-grid li {
+      padding: 14px;
+      min-height: 74px;
+      border: 3px solid var(--black);
+      background: var(--offwhite);
+      font-weight: 760;
+    }
+
+    .choice-grid li::before,
+    .artifact-grid li::before { display: none; }
+
+    .choice-grid li:nth-child(2n),
+    .artifact-grid li:nth-child(2n) { background: var(--green); }
+    .choice-grid li:nth-child(3n),
+    .artifact-grid li:nth-child(3n) { background: var(--pink); }
+    .choice-grid li:nth-child(4n),
+    .artifact-grid li:nth-child(4n) { background: var(--blue); }
+
+    .matrix {
+      display: grid;
+      gap: 12px;
+    }
+
+    .matrix-row {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 0;
+      border: 3px solid var(--black);
+      background: var(--white);
+    }
+
+    .matrix-row > div {
+      padding: 16px;
+    }
+
+    .matrix-row > div + div {
+      border-left: 3px solid var(--black);
+      font-weight: 760;
+    }
+
+    .matrix-row:nth-child(2n) { background: var(--blue); }
+    .matrix-row:nth-child(3n) { background: var(--cream); }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .mini-card {
+      padding: 20px;
+      border: 3px solid var(--black);
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .mini-card h3 {
+      margin-bottom: 12px;
+      font-size: clamp(22px, 2.6vw, 34px);
+      line-height: 1.05;
+      font-weight: 900;
+    }
+
+    footer {
+      padding: 28px 0 10px;
+      font-family: "Space Grotesk", monospace;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      :root { --anchor-offset: 24px; }
+      .topbar { position: static; align-items: flex-start; flex-direction: column; }
+      nav { justify-content: flex-start; }
+      .hero,
+      .two-col { grid-template-columns: 1fr; }
+      .steps,
+      .choice-grid,
+      .artifact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      main { padding-inline: 14px; }
+      .hero-card,
+      section { padding: 22px; }
+      .hero-card::before {
+        width: 72px;
+        height: 44px;
+        right: 18px;
+        top: -22px;
+      }
+      .hero-card::after { display: none; }
+      .quick-grid,
+      .steps,
+      .choice-grid,
+      .artifact-grid,
+      .matrix-row { grid-template-columns: 1fr; }
+      .matrix-row > div + div { border-left: 0; border-top: 3px solid var(--black); }
+      .section-head { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark"></span><span>AIHubMix Growth</span></div>
+    <nav aria-label="章节导航">
+      <a href="#goal">核心目标</a>
+      <a href="#loop">增长链路</a>
+      <a href="#playbook">模型选择</a>
+      <a href="#presets">一键配置</a>
+      <a href="#feedback">成本反馈</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="hero-card">
+        <span class="label">OVERSEAS DEVELOPER GROWTH</span>
+        <h1><span>AIHubMix</span><span>海外开发者</span><span>增长方案</span></h1>
+        <p class="lead">让海外开发者更快把 AIHubMix 用起来，把第一次 API 调用、工具接入和模型成本选择连成一条清楚路径。</p>
+      </div>
+      <div class="quick-grid" aria-label="方案关键词">
+        <div class="quick-card"><strong>API</strong><span>第一次调用</span></div>
+        <div class="quick-card"><strong>工具</strong><span>Cline / Dify / LangChain</span></div>
+        <div class="quick-card"><strong>模型</strong><span>Claude / GPT / Qwen / DeepSeek</span></div>
+        <div class="quick-card"><strong>成本</strong><span>看见差异后再迁移</span></div>
+      </div>
+    </div>
+
+    <section id="goal">
+      <div class="section-head">
+        <div class="section-num">00</div>
+        <div>
+          <span class="label nb-label-yellow">Core Goal</span>
+          <h2>核心目标</h2>
         </div>
-        <ol class="growth-loop reveal">
-          <li><span>01</span>吸引开发者</li>
-          <li><span>02</span>第一次 API 调用</li>
-          <li><span>03</span>接入常用工具</li>
-          <li><span>04</span>选择低成本 Preset</li>
-          <li><span>05</span>看到成本反馈</li>
-          <li><span>06</span>非 Claude 消耗提升</li>
+      </div>
+      <div class="content">
+        <p>这份方案的核心，是让海外开发者更快把 AIHubMix 用起来。</p>
+        <p>开发者看到产品之后，最重要的第一步，是尽快完成一次真实的 API 调用。只要第一次跑通，后面才有机会接入 Cline、OpenCode、Dify、LangChain 这些常用工具。</p>
+        <div class="callout">
+          <strong>AIHubMix 可以帮助用户看清一件事</strong>
+          <ul>
+            <li>复杂任务可以继续用 Claude、GPT 这类高质量模型。</li>
+            <li>普通任务、高频任务、批量任务，不一定每次都要用贵模型。</li>
+            <li>当用户看到不同模型的效果和花费差异后，会自己判断哪些任务可以换成更合适的模型。</li>
+          </ul>
+        </div>
+        <div class="callout">
+          <strong>最终目标有两个</strong>
+          <ul>
+            <li>让更多海外开发者完成第一次 API 调用。</li>
+            <li>让更多普通任务自然流向 Qwen、DeepSeek、Gemini、开源模型或低成本模型。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="loop">
+      <div class="section-head">
+        <div class="section-num">01</div>
+        <div>
+          <span class="label nb-label-pink">Growth Loop</span>
+          <h2>增长链路</h2>
+        </div>
+      </div>
+      <div class="content">
+        <p>AIHubMix 的增长可以分成六步：</p>
+        <ol class="steps">
+          <li>让开发者知道 AIHubMix</li>
+          <li>帮他们完成第一次 API 调用</li>
+          <li>帮他们接入正在使用的工具</li>
+          <li>给他们可以直接复制的入门配置</li>
+          <li>让他们看到不同模型的花费差异</li>
+          <li>让普通任务自然流向低成本模型</li>
         </ol>
-      </section>
+        <p>这条链路的重点，是减少开发者的思考成本。</p>
+        <p>用户来到官网后，不应该先面对一长串模型名。</p>
+        <p>他应该先看到几个简单选择：</p>
+        <ul class="choice-grid">
+          <li>我想省钱。</li>
+          <li>我想稳定。</li>
+          <li>我想写代码。</li>
+          <li>我想做客服机器人。</li>
+          <li>我想跑批量摘要。</li>
+        </ul>
+        <p>然后页面或文档直接告诉他：可以从哪套配置开始。</p>
+      </div>
+    </section>
 
-      <section id="playbook" class="strategy-section">
-        <div class="section-heading reveal">
-          <p class="eyebrow">01 / Model Choice Playbook</p>
-          <h2>模型选择手册</h2>
-          <p>
-            让开发者清楚：哪些任务需要高质量模型，哪些任务可以放心交给低成本、开源或免费模型。
-          </p>
+    <section id="playbook">
+      <div class="section-head">
+        <div class="section-num">02</div>
+        <div>
+          <span class="label nb-label-green">Model Choice</span>
+          <h2>一、模型选择手册</h2>
         </div>
-        <div class="module-grid reveal">
-          <article class="module-note">
-            <h3>当前卡点</h3>
-            <p>开发者往往习惯把复杂任务、普通任务、批量任务都交给同一种高价模型，直到成本上来之后，才开始回头找替代方案。</p>
-          </article>
-          <article class="module-note">
-            <h3>具体动作</h3>
-            <p>按任务场景拆分模型组合：关键任务保留高质量模型，高频但风险较低的任务，引导到 Qwen、DeepSeek、Gemini 或免费模型。</p>
-          </article>
-          <article class="module-note">
-            <h3>落地产物</h3>
-            <p>任务矩阵、模型选择树、复制即用的配置、成本对比截图、短视频和 GitHub README 模板。</p>
-          </article>
+      </div>
+      <div class="content">
+        <p>很多开发者会习惯性地把所有任务都交给 Claude 或 GPT。</p>
+        <p>这在重要任务上很合理。</p>
+        <p>比如复杂代码审查、深度推理、关键业务判断，都需要高质量模型。</p>
+        <p>但很多任务没有那么复杂。</p>
+        <p>比如摘要、分类、日志分析、内容草稿、测试数据、轻量脚本，长期使用贵模型会让成本快速上升。</p>
+        <p>AIHubMix 可以做一套简单的模型选择手册，让用户自己看懂不同任务该怎么选。</p>
+        <div class="matrix">
+          <div class="matrix-row"><div>复杂代码审查、复杂推理</div><div>优先用 Claude / GPT。</div></div>
+          <div class="matrix-row"><div>批量摘要、日志分析、分类整理</div><div>优先试 Qwen、DeepSeek、Gemini 或免费模型。</div></div>
+          <div class="matrix-row"><div>内容草稿、测试数据、轻量脚本</div><div>优先使用低成本模型。</div></div>
+          <div class="matrix-row"><div>客服机器人、内部知识库、Dify 应用</div><div>选择稳定模型，并准备备用模型。</div></div>
         </div>
-        <div class="matrix reveal" role="table" aria-label="模型选择任务矩阵">
-          <div class="matrix-row matrix-head" role="row">
-            <div role="columnheader">开发者任务</div>
-            <div role="columnheader">推荐模型路线</div>
-            <div role="columnheader">增长动作</div>
-          </div>
-          <div class="matrix-row" role="row">
-            <div role="cell">重要代码审查、复杂推理</div>
-            <div role="cell">Claude / GPT 付费模型</div>
-            <div role="cell">保留关键路径，避免用户觉得体验被降级</div>
-          </div>
-          <div class="matrix-row" role="row">
-            <div role="cell">批量摘要、日志分析、分类整理</div>
-            <div role="cell">Qwen / DeepSeek / Gemini / free models</div>
-            <div role="cell">用成本优势，引导高频任务迁移</div>
-          </div>
-          <div class="matrix-row" role="row">
-            <div role="cell">内容草稿、测试数据、轻量脚本</div>
-            <div role="cell">低价模型 + fallback</div>
-            <div role="cell">降低试错成本，推动更多 first API call</div>
-          </div>
-          <div class="matrix-row" role="row">
-            <div role="cell">客服机器人、内部知识库、Dify 应用</div>
-            <div role="cell">稳定模型 + 备用模型</div>
-            <div role="cell">把“能跑起来”升级成“长期稳定可控”</div>
-          </div>
+        <div class="callout">
+          <strong>这套手册要尽量简单，重点回答三个问题</strong>
+          <ul>
+            <li>这个任务重不重要？</li>
+            <li>这个任务会不会大量重复？</li>
+            <li>这个任务能不能先用便宜模型试跑？</li>
+          </ul>
         </div>
-      </section>
+        <p>如果任务重要、复杂、出错代价高，就用高质量模型。</p>
+        <p>如果任务简单、数量大、可以检查结果，就先用低成本模型。</p>
+        <div class="callout">
+          <strong>落地产物可以包括</strong>
+          <ul class="artifact-grid">
+            <li>任务清单</li>
+            <li>推荐模型</li>
+            <li>复制即用的配置</li>
+            <li>成本对比截图</li>
+            <li>GitHub README 模板</li>
+            <li>短视频 demo</li>
+          </ul>
+        </div>
+        <p>目标是让用户一眼看懂：哪些任务值得用贵模型，哪些任务可以先用低成本模型。</p>
+      </div>
+    </section>
 
-      <section id="presets" class="strategy-section split-section">
-        <div class="section-heading reveal">
-          <p class="eyebrow">02 / Presets</p>
-          <h2>一键配置方案</h2>
-          <p>
-            模型列表越长，用户越容易停在研究阶段。Preset 的价值，是提前替开发者做好选择，让复制配置比自己挨个比较模型更简单。
-          </p>
+    <section id="presets">
+      <div class="section-head">
+        <div class="section-num">03</div>
+        <div>
+          <span class="label nb-label-blue">Preset Kits</span>
+          <h2>二、一键配置方案</h2>
         </div>
-        <div class="preset-layout reveal">
-          <div class="preset-copy">
-            <h3>四个容易上手的接入包</h3>
-            <p>围绕开发者已经在用的工具链，先做小而清楚的接入包，再用文章、视频和 GitHub 模板分发出去。</p>
-            <ul>
-              <li>OpenCode 省钱 coding setup</li>
-              <li>Cline non-Claude agent setup</li>
-              <li>Dify support bot setup</li>
-              <li>LangChain fallback template</li>
-            </ul>
-          </div>
-          <div class="code-stack" aria-label="配置示例">
-            <article class="code-card">
-              <span>Balanced agent preset</span>
-              <pre><code>base_url: "https://aihubmix.com/v1"
-route:
-  coding: premium_when_needed
-  summary: low_cost_default
-  fallback: stable_paid_model</code></pre>
-            </article>
-            <article class="code-card accent">
-              <span>Low-cost batch preset</span>
-              <pre><code>tasks:
-  logs: open_or_low_cost
-  drafts: open_or_low_cost
-  eval: compare_before_upgrade</code></pre>
-            </article>
-          </div>
+      </div>
+      <div class="content">
+        <p>模型越多，开发者越容易停在选择阶段。</p>
+        <p>AIHubMix 可以提前准备几套入门配置，让用户直接复制、直接运行。这样用户不用一上来研究所有模型，也不用自己从零配置。</p>
+        <p>这部分可以先用文档、GitHub 模板和教程实现，不一定马上做成复杂产品功能。</p>
+        <div class="callout">
+          <strong>建议先做四个入门配置包</strong>
+          <ul class="artifact-grid">
+            <li>OpenCode 省钱写代码配置</li>
+            <li>Cline 多模型任务配置</li>
+            <li>Dify 客服机器人配置</li>
+            <li>LangChain 备用模型配置</li>
+          </ul>
         </div>
-      </section>
+        <div class="callout">
+          <strong>每个配置包都要写清楚</strong>
+          <ul>
+            <li>适合什么任务</li>
+            <li>默认用哪个模型</li>
+            <li>什么时候需要切回 Claude 或 GPT</li>
+            <li>大概能节省哪些成本</li>
+            <li>如何复制到自己的工具里</li>
+          </ul>
+        </div>
+        <div class="example-box">
+          <strong>比如</strong>
+          <ul>
+            <li>OpenCode 配置可以告诉用户：复杂代码审查继续用高质量模型，普通解释、测试数据、代码摘要可以先用低成本模型。</li>
+            <li>Cline 配置可以告诉用户：普通步骤可以先用平衡模型，关键步骤再切到高质量模型。</li>
+            <li>Dify 配置可以告诉用户：客服机器人要稳定，所以需要主模型和备用模型。</li>
+            <li>LangChain 配置可以告诉用户：批量任务可以先跑便宜模型，再抽样检查效果。</li>
+          </ul>
+        </div>
+        <p>这套配置的价值，是帮开发者省掉第一轮选择时间。</p>
+        <p>用户复制后能跑起来，才会继续测试更多模型。</p>
+      </div>
+    </section>
 
-      <section id="onboarding" class="strategy-section">
-        <div class="section-heading reveal">
-          <p class="eyebrow">03 / Onboarding</p>
-          <h2>默认引导入口</h2>
-          <p>
-            第一次 API 调用会直接影响用户对产品的第一印象。新用户生成 key 后，应该直接看到三条能马上跑起来的路线，而不是只看到一个高价模型示例。
-          </p>
+    <section id="onboarding">
+      <div class="section-head">
+        <div class="section-num">04</div>
+        <div>
+          <span class="label nb-label-yellow">Onboarding</span>
+          <h2>三、新用户默认引导</h2>
         </div>
-        <div class="pathway-grid reveal">
-          <article class="pathway">
-            <span class="pathway-icon">¥</span>
+      </div>
+      <div class="content">
+        <p>新用户生成 API Key 后，页面应该直接给他三条清楚路线。</p>
+        <div class="two-col">
+          <article class="mini-card">
             <h3>省钱优先</h3>
-            <p>默认使用低成本和免费模型，适合批量摘要、草稿、日志和分类任务。</p>
+            <p>适合摘要、分类、日志分析、草稿、测试数据。默认推荐低成本模型或免费模型。</p>
           </article>
-          <article class="pathway featured">
-            <span class="pathway-icon">≈</span>
+          <article class="mini-card">
             <h3>平衡优先</h3>
-            <p>关键任务走高质量模型，高频任务走非 Claude 路线，并提前设置 fallback。</p>
+            <p>适合日常开发和普通任务。普通步骤使用低成本模型，关键步骤使用高质量模型。</p>
           </article>
-          <article class="pathway">
-            <span class="pathway-icon">★</span>
+          <article class="mini-card">
             <h3>效果优先</h3>
-            <p>保留 Claude / GPT 作为主链路，再通过看板找出后续可以迁移的任务。</p>
+            <p>适合复杂代码、深度推理、关键业务任务。先使用 Claude / GPT，再通过后续用量观察，找出可以迁移的普通任务。</p>
           </article>
         </div>
-      </section>
+        <p>这三条路线的作用，是让用户不用从模型列表里慢慢猜。</p>
+        <p>用户只需要先选自己的目标：</p>
+        <ul class="choice-grid">
+          <li>想省钱。</li>
+          <li>想稳定。</li>
+          <li>想要效果最好。</li>
+        </ul>
+        <p>然后跟着示例跑一次。</p>
+        <div class="callout">
+          <strong>新用户的第一天体验应该尽量简单</strong>
+          <ul>
+            <li>5 分钟内跑通第一次调用。</li>
+            <li>15 分钟内知道下一步该接入哪个工具。</li>
+            <li>当天能把 AIHubMix 接进一个真实工作流。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-      <section id="dashboard" class="strategy-section dashboard-section">
-        <div class="section-heading reveal">
-          <p class="eyebrow">04 / Cost Dashboard</p>
-          <h2>成本看板</h2>
-          <p>
-            迁移的动力来自看得见的收益：让用户清楚看到 Claude 花了多少、非 Claude 花了多少、哪些任务可以迁移、迁移后大概能省出多少空间。
-          </p>
+    <section id="feedback">
+      <div class="section-head">
+        <div class="section-num">05</div>
+        <div>
+          <span class="label nb-label-pink">Cost Feedback</span>
+          <h2>四、成本反馈</h2>
         </div>
-        <div class="dashboard-wrap reveal">
-          <div class="analytics-panel">
-            <div class="analytics-top">
-              <span>看板关注点</span>
-              <span>Weekly model-mix review</span>
-            </div>
-            <div class="donut" aria-hidden="true"></div>
-            <div class="metric-pair">
-              <div>
-                <strong>Claude spend</strong>
-                <span>关键路径是否稳定</span>
-              </div>
-              <div>
-                <strong>Non-Claude spend</strong>
-                <span>高频任务是否在扩大</span>
-              </div>
-            </div>
-            <div class="bars" aria-hidden="true">
-              <span style="--h: 32%"></span>
-              <span style="--h: 46%"></span>
-              <span style="--h: 58%"></span>
-              <span style="--h: 72%"></span>
-              <span style="--h: 84%"></span>
-            </div>
-          </div>
-          <div class="recommendation-panel">
-            <h3>看板要回答的四个问题</h3>
-            <ol>
-              <li>哪些任务正在消耗高价模型？</li>
-              <li>哪些任务迁移后风险低？</li>
-              <li>迁移后效果是否够用？</li>
-              <li>本周非 Claude 调用占比有没有上升？</li>
-            </ol>
-          </div>
+      </div>
+      <div class="content">
+        <p>用户会不会调整模型选择，关键看他能不能看见花费差异。</p>
+        <p>如果用户只看到模型列表，他很难主动改变习惯。</p>
+        <p>如果用户看到一周里 Claude 花了多少钱，低成本模型花了多少钱，哪些任务最烧钱，他会更容易自己做判断。</p>
+        <p>AIHubMix 可以把成本反馈做成增长动作。</p>
+        <div class="callout">
+          <strong>短期可以先做轻量版本</strong>
+          <ul>
+            <li>每周给活跃用户一份简单成本回顾。</li>
+            <li>告诉他本周不同模型分别花了多少钱。</li>
+            <li>告诉他哪些任务调用次数最多。</li>
+            <li>告诉他哪些任务可能适合先试低成本模型。</li>
+            <li>给出一两个可以复制的替代配置。</li>
+          </ul>
         </div>
-      </section>
+        <div class="callout">
+          <strong>这份回顾要回答四个简单问题</strong>
+          <ul>
+            <li>钱主要花在哪些模型上？</li>
+            <li>哪些任务调用次数最多？</li>
+            <li>哪些任务可以先用便宜模型试跑？</li>
+            <li>换模型后效果是否还能接受？</li>
+          </ul>
+        </div>
+        <p>用户看到这些信息后，会自然意识到：</p>
+        <ul>
+          <li>有些任务值得继续用 Claude。</li>
+          <li>有些任务长期用 Claude 会太贵。</li>
+          <li>有些任务可以先用 Qwen、DeepSeek、Gemini 或低成本模型。</li>
+          <li>只要效果够用，就没有必要每一步都用最贵模型。</li>
+        </ul>
+      </div>
+    </section>
 
-      <section id="plan" class="section-band cadence-band">
-        <div class="section-heading reveal">
-          <p class="eyebrow">30 / 60 / 90</p>
-          <h2>推进节奏</h2>
-          <p>先证明开发者愿意复制配置，再把配置变成 onboarding 的默认路径，最后用数据持续调整模型组合。</p>
+    <section id="content">
+      <div class="section-head">
+        <div class="section-num">06</div>
+        <div>
+          <span class="label nb-label-green">Distribution</span>
+          <h2>五、内容分发方式</h2>
         </div>
-        <div class="timeline reveal">
-          <article>
-            <span>第 1-2 周</span>
-            <h3>冷启动材料</h3>
-            <p>发布模型选择矩阵、4 个 starter preset、3 篇场景文章和 2 个短视频 demo。</p>
-          </article>
-          <article>
-            <span>第 3-6 周</span>
-            <h3>工具链转化</h3>
-            <p>把 Cline、OpenCode、Dify、LangChain 接入路径做成官网入口和 GitHub 模板。</p>
-          </article>
-          <article>
-            <span>第 7-12 周</span>
-            <h3>模型组合复盘</h3>
-            <p>上线成本看板、周报提醒和可迁移任务建议，把非 Claude 占比纳入运营指标。</p>
-          </article>
+      </div>
+      <div class="content">
+        <p>内容不能只写成普通博客。</p>
+        <p>开发者更容易被能直接运行的东西打动。</p>
+        <p>所以 AIHubMix 的内容应该围绕“复制后能跑”来做。</p>
+        <div class="callout">
+          <strong>可以优先做一组可复制的入门材料</strong>
+          <ul class="artifact-grid">
+            <li>模型怎么选</li>
+            <li>工具怎么接</li>
+            <li>配置怎么用</li>
+            <li>成本怎么看</li>
+            <li>任务怎么跑</li>
+          </ul>
         </div>
-      </section>
+        <div class="callout">
+          <strong>每篇内容都要尽量短，结构固定</strong>
+          <ul>
+            <li>这个任务是什么</li>
+            <li>推荐用什么模型</li>
+            <li>为什么这样选</li>
+            <li>怎么复制配置</li>
+            <li>跑出来大概什么效果</li>
+            <li>成本大概有什么变化</li>
+          </ul>
+        </div>
+        <p>发布位置可以放在官网文档、GitHub、Reddit、X、Discord、开发者社区。</p>
+        <p>内容的目标是让用户复制配置、生成 API Key、完成第一次调用。</p>
+      </div>
+    </section>
 
-      <section class="strategy-section risk-section">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Operating risks</p>
-          <h2>需要提前守住的边界</h2>
+    <section id="close">
+      <div class="section-head">
+        <div class="section-num">07</div>
+        <div>
+          <span class="label nb-label-blue">Closed Loop</span>
+          <h2>六、增长闭环</h2>
         </div>
-        <div class="risk-grid reveal">
-          <article>
-            <h3>免费模型的稳定性</h3>
-            <p>免费入口适合拉新和试用，但需要说清楚额度、速度和可用性边界，避免用户把体验波动归咎于产品本身。</p>
-          </article>
-          <article>
-            <h3>上游模型透明度</h3>
-            <p>价格、provider、fallback 和路由逻辑越透明，欧美开发者越容易建立长期信任。</p>
-          </article>
-          <article>
-            <h3>内容不能只讲便宜</h3>
-            <p>核心表达应该是“不同任务匹配不同模型”，便宜只是结果之一。否则容易让人觉得 AIHubMix 只是一个低价接口转售平台。</p>
-          </article>
-          <article>
-            <h3>指标先小后大</h3>
-            <p>先看 first API call、preset copy、weekly active keys；跑顺之后，再看非 Claude 消耗占比和付费留存。</p>
-          </article>
-        </div>
-      </section>
-    </main>
+      </div>
+      <div class="content">
+        <p>这套方案的闭环很简单：</p>
+        <ol class="steps">
+          <li>先让开发者看到一个具体任务。</li>
+          <li>再给他一套可以复制的配置。</li>
+          <li>然后让他跑通第一次 API 调用。</li>
+          <li>接着帮他接入常用工具。</li>
+          <li>最后让他看到不同模型的成本差异。</li>
+        </ol>
+        <p>当用户看见效果和成本差异后，会自己开始调整模型组合。</p>
+        <ul>
+          <li>复杂任务继续使用高质量模型。</li>
+          <li>普通任务逐步交给低成本模型。</li>
+          <li>批量任务优先尝试开源模型或免费模型。</li>
+          <li>长期项目准备主模型和备用模型。</li>
+        </ul>
+        <p>这样 AIHubMix 可以从“一个多模型 API 入口”，变成“帮助开发者管理模型成本和模型选择的工具”。</p>
+        <p>最终，用户会更清楚地知道：</p>
+        <ul>
+          <li>什么任务值得用 Claude。</li>
+          <li>什么任务可以用更便宜的模型。</li>
+          <li>什么任务适合先用免费模型试跑。</li>
+          <li>什么任务需要备用模型保证稳定。</li>
+        </ul>
+        <p>AIHubMix 的增长重点，是把这条路径做清楚，让开发者少研究、少配置、少踩坑，更快把产品放进自己的真实工作流。</p>
+      </div>
+    </section>
 
-    <script src="./script.js"></script>
-  </body>
+    <footer>AIHubMix / Overseas Developer Growth / Model Choice / Cost Feedback</footer>
+  </main>
+</body>
 </html>
