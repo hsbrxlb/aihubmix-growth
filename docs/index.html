@@ -38,13 +38,12 @@
             <span>转成多模型调用增长</span>
           </h1>
           <p class="lead">
-            增长抓手：把低成本、开源、非 Claude 模型变成默认可接入、可复制、可衡量的工作流。
+            关键思路：让低成本、开源和其他非 Claude 模型，变成开发者随时能接入、直接能复制、效果看得见的工作流。
           </p>
           <div class="hero-actions" aria-label="核心抓手">
             <a class="primary-link" href="#loop">看增长链路</a>
-            <a class="secondary-link" href="#sources">公开来源</a>
           </div>
-          <dl class="proof-strip" aria-label="公开证据信息">
+          <dl class="proof-strip" aria-label="关键信息">
             <div>
               <dt>官方定位</dt>
               <dd>OpenAI-compatible gateway</dd>
@@ -106,9 +105,9 @@
       <section id="loop" class="section-band loop-band">
         <div class="section-heading reveal">
           <p class="eyebrow">Growth loop</p>
-          <h2>从“看到产品”到“形成消耗”的连续链路</h2>
+          <h2>从“知道产品”到“真正用起来”的完整过程</h2>
           <p>
-            核心不是多发几篇文章，而是让开发者在最短路径内完成第一次调用，并在工具链里自然用到合适的模型组合。
+            重点不是多发几篇文章，而是让开发者最快完成第一次 API 调用，并在他们常用的工具里，自然用上合适的模型组合。
           </p>
         </div>
         <ol class="growth-loop reveal">
@@ -126,21 +125,21 @@
           <p class="eyebrow">01 / Model Choice Playbook</p>
           <h2>模型选择手册</h2>
           <p>
-            让开发者知道哪些任务需要高质量模型，哪些任务可以放心交给低成本、开源或免费模型。
+            让开发者清楚：哪些任务需要高质量模型，哪些任务可以放心交给低成本、开源或免费模型。
           </p>
         </div>
         <div class="module-grid reveal">
           <article class="module-note">
             <h3>当前卡点</h3>
-            <p>开发者默认把复杂任务、普通任务、批量任务都交给同一类高价模型，成本上升后才开始回头找替代方案。</p>
+            <p>开发者往往习惯把复杂任务、普通任务、批量任务都交给同一种高价模型，直到成本上来之后，才开始回头找替代方案。</p>
           </article>
           <article class="module-note">
             <h3>具体动作</h3>
-            <p>按任务拆分模型路线：关键路径保留高质量模型，高频低风险任务导向 Qwen、DeepSeek、Gemini 或免费模型。</p>
+            <p>按任务场景拆分模型组合：关键任务保留高质量模型，高频但风险较低的任务，引导到 Qwen、DeepSeek、Gemini 或免费模型。</p>
           </article>
           <article class="module-note">
             <h3>落地产物</h3>
-            <p>任务矩阵、模型选择树、复制即用配置、成本对比截图、短视频和 GitHub README 模板。</p>
+            <p>任务矩阵、模型选择树、复制即用的配置、成本对比截图、短视频和 GitHub README 模板。</p>
           </article>
         </div>
         <div class="matrix reveal" role="table" aria-label="模型选择任务矩阵">
@@ -157,7 +156,7 @@
           <div class="matrix-row" role="row">
             <div role="cell">批量摘要、日志分析、分类整理</div>
             <div role="cell">Qwen / DeepSeek / Gemini / free models</div>
-            <div role="cell">用成本优势引导高频任务迁移</div>
+            <div role="cell">用成本优势，引导高频任务迁移</div>
           </div>
           <div class="matrix-row" role="row">
             <div role="cell">内容草稿、测试数据、轻量脚本</div>
@@ -167,7 +166,7 @@
           <div class="matrix-row" role="row">
             <div role="cell">客服机器人、内部知识库、Dify 应用</div>
             <div role="cell">稳定模型 + 备用模型</div>
-            <div role="cell">把“能跑”升级成“长期可控”</div>
+            <div role="cell">把“能跑起来”升级成“长期稳定可控”</div>
           </div>
         </div>
       </section>
@@ -177,13 +176,13 @@
           <p class="eyebrow">02 / Presets</p>
           <h2>一键配置方案</h2>
           <p>
-            模型列表越长，用户越容易停在研究阶段。Preset 的价值是把选择成本提前消化，让复制配置比自己比较模型更简单。
+            模型列表越长，用户越容易停在研究阶段。Preset 的价值，是提前替开发者做好选择，让复制配置比自己挨个比较模型更简单。
           </p>
         </div>
         <div class="preset-layout reveal">
           <div class="preset-copy">
-            <h3>四组高转化入口</h3>
-            <p>围绕开发者已经在用的工具链，先做小而清楚的接入包，再用内容把包分发出去。</p>
+            <h3>四个容易上手的接入包</h3>
+            <p>围绕开发者已经在用的工具链，先做小而清楚的接入包，再用文章、视频和 GitHub 模板分发出去。</p>
             <ul>
               <li>OpenCode 省钱 coding setup</li>
               <li>Cline non-Claude agent setup</li>
@@ -216,7 +215,7 @@ route:
           <p class="eyebrow">03 / Onboarding</p>
           <h2>默认引导入口</h2>
           <p>
-            第一次 API 调用决定用户心智。新用户生成 key 后，直接给三条可执行路线，而不是只给单一高价模型示例。
+            第一次 API 调用会直接影响用户对产品的第一印象。新用户生成 key 后，应该直接看到三条能马上跑起来的路线，而不是只看到一个高价模型示例。
           </p>
         </div>
         <div class="pathway-grid reveal">
@@ -228,12 +227,12 @@ route:
           <article class="pathway featured">
             <span class="pathway-icon">≈</span>
             <h3>平衡优先</h3>
-            <p>关键任务走高质量模型，高频任务走非 Claude 路线，并预设 fallback。</p>
+            <p>关键任务走高质量模型，高频任务走非 Claude 路线，并提前设置 fallback。</p>
           </article>
           <article class="pathway">
             <span class="pathway-icon">★</span>
             <h3>效果优先</h3>
-            <p>保留 Claude / GPT 主链路，再通过看板找出可迁移任务。</p>
+            <p>保留 Claude / GPT 作为主链路，再通过看板找出后续可以迁移的任务。</p>
           </article>
         </div>
       </section>
@@ -243,24 +242,24 @@ route:
           <p class="eyebrow">04 / Cost Dashboard</p>
           <h2>成本看板</h2>
           <p>
-            迁移动力来自可见收益：让用户看到 Claude 花费、非 Claude 花费、可迁移任务和节省空间。
+            迁移的动力来自看得见的收益：让用户清楚看到 Claude 花了多少、非 Claude 花了多少、哪些任务可以迁移、迁移后大概能省出多少空间。
           </p>
         </div>
         <div class="dashboard-wrap reveal">
           <div class="analytics-panel">
             <div class="analytics-top">
-              <span>运营看板口径</span>
+              <span>看板关注点</span>
               <span>Weekly model-mix review</span>
             </div>
             <div class="donut" aria-hidden="true"></div>
             <div class="metric-pair">
               <div>
                 <strong>Claude spend</strong>
-                <span>关键路径保留</span>
+                <span>关键路径是否稳定</span>
               </div>
               <div>
                 <strong>Non-Claude spend</strong>
-                <span>高频任务扩大</span>
+                <span>高频任务是否在扩大</span>
               </div>
             </div>
             <div class="bars" aria-hidden="true">
@@ -287,7 +286,7 @@ route:
         <div class="section-heading reveal">
           <p class="eyebrow">30 / 60 / 90</p>
           <h2>推进节奏</h2>
-          <p>先证明开发者愿意复制配置，再把配置变成 onboarding 默认路径，最后用数据持续调模型组合。</p>
+          <p>先证明开发者愿意复制配置，再把配置变成 onboarding 的默认路径，最后用数据持续调整模型组合。</p>
         </div>
         <div class="timeline reveal">
           <article>
@@ -316,7 +315,7 @@ route:
         <div class="risk-grid reveal">
           <article>
             <h3>免费模型的稳定性</h3>
-            <p>免费入口适合拉新和试用，但需要明确额度、速度和可用性边界，避免用户把体验波动归咎于产品。</p>
+            <p>免费入口适合拉新和试用，但需要说清楚额度、速度和可用性边界，避免用户把体验波动归咎于产品本身。</p>
           </article>
           <article>
             <h3>上游模型透明度</h3>
@@ -324,27 +323,15 @@ route:
           </article>
           <article>
             <h3>内容不能只讲便宜</h3>
-            <p>核心表达应是“任务匹配模型”，便宜只是结果之一；否则容易显得像低价转售。</p>
+            <p>核心表达应该是“不同任务匹配不同模型”，便宜只是结果之一。否则容易让人觉得 AIHubMix 只是一个低价接口转售平台。</p>
           </article>
           <article>
             <h3>指标先小后大</h3>
-            <p>先看 first API call、preset copy、weekly active keys，再看非 Claude 消耗占比和付费留存。</p>
+            <p>先看 first API call、preset copy、weekly active keys；跑顺之后，再看非 Claude 消耗占比和付费留存。</p>
           </article>
         </div>
       </section>
     </main>
-
-    <footer id="sources" class="sources">
-      <h2>公开来源</h2>
-      <ul>
-        <li><a href="https://docs.aihubmix.com/en/docs/overview/free-models" target="_blank" rel="noreferrer">AIHubMix free models docs</a></li>
-        <li><a href="https://aihubmix.com/pricing" target="_blank" rel="noreferrer">AIHubMix pricing</a></li>
-        <li><a href="https://a16z.com/state-of-ai-an-empirical-100-trillion-token-study-with-openrouter/" target="_blank" rel="noreferrer">a16z / OpenRouter state of AI</a></li>
-        <li><a href="https://vercel.com/blog/ai-gateway-is-now-generally-available" target="_blank" rel="noreferrer">Vercel AI Gateway GA</a></li>
-        <li><a href="https://github.com/BerriAI/litellm" target="_blank" rel="noreferrer">LiteLLM GitHub</a></li>
-        <li><a href="https://developers.cloudflare.com/ai-gateway/" target="_blank" rel="noreferrer">Cloudflare AI Gateway docs</a></li>
-      </ul>
-    </footer>
 
     <script src="./script.js"></script>
   </body>
