@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIHubMix 第一批流量渠道</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fdfae7;
+      --ink: #111111;
+      --muted: #5d6070;
+      --primary: #1e2bfa;
+      --line: rgba(30, 43, 250, 0.22);
+      --green: #0b7a5b;
+      --amber: #9a5b00;
+      --rose: #9f244d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 16px clamp(18px, 4vw, 56px);
+      background: rgba(253, 250, 231, 0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+      line-height: 1.25;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    main {
+      width: min(1360px, 100%);
+      margin: 0 auto;
+      padding: 36px clamp(18px, 4vw, 56px) 68px;
+    }
+
+    .traffic-map {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--green);
+      border-radius: 8px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.32);
+    }
+
+    .card:nth-child(2),
+    .card:nth-child(5) {
+      border-top-color: var(--amber);
+    }
+
+    .card:nth-child(3),
+    .card:nth-child(6) {
+      border-top-color: var(--rose);
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .field {
+      padding-top: 10px;
+      margin-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+
+    .field:first-of-type {
+      margin-top: 0;
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--primary);
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .field p,
+    .field ul {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .field p + p,
+    .field p + ul,
+    .field ul + p {
+      margin-top: 8px;
+    }
+
+    .field ul {
+      padding-left: 18px;
+    }
+
+    @media (max-width: 1120px) {
+      .traffic-map {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      main {
+        padding-top: 28px;
+        padding-bottom: 48px;
+      }
+
+      .traffic-map {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <h1>AIHubMix 第一批流量渠道</h1>
+  </header>
+
+  <main>
+    <section class="traffic-map" aria-label="AIHubMix 第一批流量渠道">
+      <article class="card">
+        <h2>1. 搜索流量</h2>
+        <div class="field">
+          <span class="label">流量从哪来</span>
+          <p>用户在 Google 搜 OpenRouter alternative、Claude cost reduction、AI API gateway、Dify model provider 这类问题。</p>
+        </div>
+        <div class="field">
+          <span class="label">放在哪里 / URL</span>
+          <p>主要放在 AIHubMix 自己的网站和文档站。</p>
+          <p>已有入口可以参考：</p>
+          <ul>
+            <li><a href="https://aihubmix.ai/" target="_blank" rel="noreferrer">https://aihubmix.ai/</a></li>
+            <li><a href="https://aihubmix.com/?lang=en" target="_blank" rel="noreferrer">https://aihubmix.com/?lang=en</a></li>
+            <li><a href="https://docs.aihubmix.com/en/index" target="_blank" rel="noreferrer">https://docs.aihubmix.com/en/index</a></li>
+          </ul>
+          <p>新页面可以做成：</p>
+          <ul>
+            <li><a href="https://aihubmix.ai/openrouter-alternative" target="_blank" rel="noreferrer">https://aihubmix.ai/openrouter-alternative</a></li>
+            <li><a href="https://aihubmix.ai/claude-cost-reduction" target="_blank" rel="noreferrer">https://aihubmix.ai/claude-cost-reduction</a></li>
+            <li><a href="https://docs.aihubmix.com/en/blogs/dify-model-provider" target="_blank" rel="noreferrer">https://docs.aihubmix.com/en/blogs/dify-model-provider</a></li>
+            <li><a href="https://docs.aihubmix.com/en/blogs/ai-api-gateway-comparison" target="_blank" rel="noreferrer">https://docs.aihubmix.com/en/blogs/ai-api-gateway-comparison</a></li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="label">做什么内容</span>
+          <p>问题答案页、对比页、接入指南。不是首页大介绍，而是直接回答用户搜索的问题。</p>
+        </div>
+        <div class="field">
+          <span class="label">看什么结果</span>
+          <p>搜索进站后有没有注册、创建 API key、进入文档、完成首次调用。</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>2. 开发者社区流量</h2>
+        <div class="field">
+          <span class="label">流量从哪来</span>
+          <p>开发者在 GitHub issue、工具论坛、Reddit、Discord 里问模型接入、成本、稳定性问题。</p>
+        </div>
+        <div class="field">
+          <span class="label">放在哪里 / URL</span>
+          <p>不是 AIHubMix 自己的网站，而是外部社区。比如：</p>
+          <ul>
+            <li>GitHub issues：https://github.com/.../.../issues</li>
+            <li>Reddit：<a href="https://www.reddit.com/r/openrouter/" target="_blank" rel="noreferrer">https://www.reddit.com/r/openrouter/</a>、<a href="https://www.reddit.com/r/ChatGPTCoding/" target="_blank" rel="noreferrer">https://www.reddit.com/r/ChatGPTCoding/</a></li>
+            <li>Discord：相关 AI coding / AI tool 社区</li>
+            <li>工具论坛：Dify Forum、LangChain Forum、LiteLLM GitHub 等</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="label">做什么内容</span>
+          <p>真实身份回答问题，给文档或示例链接。不是批量评论，也不是小号引流。</p>
+        </div>
+        <div class="field">
+          <span class="label">看什么结果</span>
+          <p>这些回答有没有带来文档访问、API key 创建、首次调用。</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>3. GitHub 流量</h2>
+        <div class="field">
+          <span class="label">流量从哪来</span>
+          <p>开发者在 GitHub 搜示例项目、模板、SDK、provider、routing、OpenAI-compatible config。</p>
+        </div>
+        <div class="field">
+          <span class="label">放在哪里 / URL</span>
+          <p>AIHubMix 应该用自己的 GitHub repo 承接。现在能搜到一个相关 repo：</p>
+          <ul>
+            <li><a href="https://github.com/inferera/aihubmix" target="_blank" rel="noreferrer">https://github.com/inferera/aihubmix</a></li>
+          </ul>
+          <p>未来可以新增或整理成：</p>
+          <ul>
+            <li><a href="https://github.com/inferera/aihubmix/tree/main/examples/cline" target="_blank" rel="noreferrer">https://github.com/inferera/aihubmix/tree/main/examples/cline</a></li>
+            <li><a href="https://github.com/inferera/aihubmix/tree/main/examples/dify" target="_blank" rel="noreferrer">https://github.com/inferera/aihubmix/tree/main/examples/dify</a></li>
+            <li><a href="https://github.com/inferera/aihubmix/tree/main/examples/langchain" target="_blank" rel="noreferrer">https://github.com/inferera/aihubmix/tree/main/examples/langchain</a></li>
+          </ul>
+          <p>或者单独 repo：</p>
+          <ul>
+            <li><a href="https://github.com/inferera/aihubmix-starter-examples" target="_blank" rel="noreferrer">https://github.com/inferera/aihubmix-starter-examples</a></li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="label">做什么内容</span>
+          <p>最小可运行示例。不要一开始做大工程，先让用户能复制配置、填 API key、跑通一次。</p>
+        </div>
+        <div class="field">
+          <span class="label">看什么结果</span>
+          <p>repo 访问、star、fork、README 点击、从 GitHub 到文档/API key 的转化。</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>4. 技术内容流量</h2>
+        <div class="field">
+          <span class="label">流量从哪来</span>
+          <p>开发者看教程、成本对比、接入指南、视频 walkthrough 时发现 AIHubMix。</p>
+        </div>
+        <div class="field">
+          <span class="label">放在哪里 / URL</span>
+          <p>优先放在 AIHubMix docs / blog：</p>
+          <ul>
+            <li><a href="https://docs.aihubmix.com/en/index" target="_blank" rel="noreferrer">https://docs.aihubmix.com/en/index</a></li>
+          </ul>
+          <p>已有类似内容：</p>
+          <ul>
+            <li><a href="https://docs.aihubmix.com/en/blogs/free-ai-models" target="_blank" rel="noreferrer">https://docs.aihubmix.com/en/blogs/free-ai-models</a></li>
+          </ul>
+          <p>也可以放在外部平台：</p>
+          <ul>
+            <li>Dev.to</li>
+            <li>Medium</li>
+            <li>Hashnode</li>
+            <li>YouTube</li>
+            <li>技术博客</li>
+            <li>合作方文档</li>
+          </ul>
+          <p>新内容 URL 可以是：</p>
+          <ul>
+            <li><a href="https://docs.aihubmix.com/en/blogs/connect-cline-with-aihubmix" target="_blank" rel="noreferrer">https://docs.aihubmix.com/en/blogs/connect-cline-with-aihubmix</a></li>
+            <li><a href="https://docs.aihubmix.com/en/blogs/dify-openai-compatible-provider" target="_blank" rel="noreferrer">https://docs.aihubmix.com/en/blogs/dify-openai-compatible-provider</a></li>
+            <li><a href="https://docs.aihubmix.com/en/blogs/langchain-model-routing" target="_blank" rel="noreferrer">https://docs.aihubmix.com/en/blogs/langchain-model-routing</a></li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="label">做什么内容</span>
+          <p>短教程、长文档、成本计算、迁移指南、5 分钟视频。</p>
+        </div>
+        <div class="field">
+          <span class="label">看什么结果</span>
+          <p>教程读完后有没有进入接入流程，有没有创建 API key。</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>5. 社媒流量</h2>
+        <div class="field">
+          <span class="label">流量从哪来</span>
+          <p>开发者、AI 工具用户、独立开发者在 X、YouTube、LinkedIn、Indie Hackers 看到新工具信息、成本对比、案例和短教程。</p>
+        </div>
+        <div class="field">
+          <span class="label">放在哪里 / URL</span>
+          <ul>
+            <li>X 官方账号</li>
+            <li>YouTube channel</li>
+            <li>LinkedIn company page</li>
+            <li>Indie Hackers profile / posts</li>
+            <li>也可以做个人技术账号，但不要伪装小号。</li>
+          </ul>
+          <p>这里 URL 要看 AIHubMix 现在有没有官方账号；如果没有，就应该建。HTML 可以先写类别，不要编具体账号 URL。</p>
+        </div>
+        <div class="field">
+          <span class="label">做什么内容</span>
+          <p>成本对比图、模型路由案例、产品更新、短教程、真实用户案例、工具接入视频。</p>
+        </div>
+        <div class="field">
+          <span class="label">看什么结果</span>
+          <p>不是看点赞，而是看有没有导到 docs、GitHub repo、API key 创建。</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>6. 生态 / KOL 流量</h2>
+        <div class="field">
+          <span class="label">流量从哪来</span>
+          <p>开发者博主、AI coding 教程作者、开源项目维护者、工具集成伙伴把 AIHubMix 带进他们的教程、模板或项目里。</p>
+        </div>
+        <div class="field">
+          <span class="label">放在哪里 / URL</span>
+          <p>外部教程频道、GitHub 项目、AI SDK provider 页面、工具生态文档。</p>
+          <p>比如现在能看到 AIHubMix 已经出现在 Vercel AI SDK 社区 provider 生态里：</p>
+          <ul>
+            <li><a href="https://ai-sdk.dev/providers/community-providers/aihubmix" target="_blank" rel="noreferrer">https://ai-sdk.dev/providers/community-providers/aihubmix</a></li>
+          </ul>
+          <p>还可以争取出现在：</p>
+          <ul>
+            <li>Dify 插件/模板生态</li>
+            <li>LangChain 示例</li>
+            <li>LiteLLM 相关对比</li>
+            <li>AI coding 博主教程</li>
+            <li>Open WebUI / LobeHub / Cherry Studio 等客户端接入文档</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="label">做什么内容</span>
+          <p>教程合作、工具模板、集成案例、真实用户故事。</p>
+        </div>
+        <div class="field">
+          <span class="label">看什么结果</span>
+          <p>外部引用、合作教程、集成使用、团队级用户。</p>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
